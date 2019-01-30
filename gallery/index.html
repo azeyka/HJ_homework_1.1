@@ -35,5 +35,32 @@
       </ul>
     </div>
   </article>
+  <script>
+    const img = document.getElementById("currentPhoto"),
+          photoLinks = [
+            "i/breuer-building.jpg",
+            "i/guggenheim-museum.jpg",
+            "i/headquarters.jpg",
+            "i/IAC.jpg",
+            "i/new-museum.jpg",
+          ];
+    img.src = photoLinks[0];
+    let photoId = 0;
+    
+    function changePhoto() {
+      if (this.id === "nextPhoto"){
+        photoId += 1;
+        if (photoLinks[photoId] === undefined) photoId = 0;
+      } else {
+        photoId === 0 ? photoId = photoLinks.length - 1 : photoId -= 1;     
+      };
+      img.src = photoLinks[photoId];
+    };
+    
+    ["nextPhoto", "prevPhoto"].forEach((btnId) => {
+      const btn = document.getElementById(btnId);
+      btn.onclick = changePhoto;
+    });
+  </script>
 </body>
 </html>
